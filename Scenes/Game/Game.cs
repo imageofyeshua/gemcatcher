@@ -48,5 +48,10 @@ public partial class Game : Node2D
 	private void GameOver()
 	{
 		GD.Print("GameOver");
+		foreach (Node node in GetChildren())
+		{
+			node.SetProcess(false);
+		}
+		_spawnTimer.Stop();
 	}
 }
