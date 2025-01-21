@@ -3,7 +3,7 @@ using System;
 
 public partial class Paddle : Area2D
 {
-	[Export] float _speed = 200.0f;
+	[Export] float _speed = 400.0f;
 	[Export] float _margin = 50.0f;
 
 	// Called when the node enters the scene tree for the first time.

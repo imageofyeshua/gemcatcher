@@ -6,9 +6,11 @@ public partial class Game : Node2D
 	const double GEM_MARGIN = 50.0;
 	[Export] private PackedScene _gemScene;
 	[Export] private Timer _spawnTimer;
+	[Export] private Label _scoreLabel;
 	// [Export] private Gem _gem;
 	// [Export] private NodePath _gemPath;
 	// private Gem _gem;
+	private int _score = 0;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -43,6 +45,8 @@ public partial class Game : Node2D
 	private void OnScored()
 	{
 		GD.Print("OnScored Received.");
+		_score += 1;
+		_scoreLabel.Text = $"{_score:0000}";
 	}
 
 	private void GameOver()
