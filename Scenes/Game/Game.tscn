@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkp1aym78svw4"]
+[gd_scene load_steps=6 format=3 uid="uid://bkp1aym78svw4"]
 
 [ext_resource type="Script" path="res://Scenes/Game/Game.cs" id="1_ihemi"]
 [ext_resource type="Texture2D" uid="uid://b1w1dqx7ggmwm" path="res://assets/GameBg.png" id="2_xyfeb"]
 [ext_resource type="PackedScene" uid="uid://dxbpxkjvteqsb" path="res://Scenes/Paddle/Paddle.tscn" id="3_rykx4"]
 [ext_resource type="PackedScene" uid="uid://qgdh366iqey0" path="res://Scenes/Gem/Gem.tscn" id="4_1kr1y"]
+[ext_resource type="AudioStream" uid="uid://dddnjmglhq16e" path="res://assets/bgm_action_5.mp3" id="5_02acx"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("_spawnTimer", "_scoreLabel")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("_spawnTimer", "_scoreLabel", "_music")]
 script = ExtResource("1_ihemi")
 _gemScene = ExtResource("4_1kr1y")
 _spawnTimer = NodePath("Timer")
 _scoreLabel = NodePath("ScoreLabel")
+_music = NodePath("Music")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(611, 294)
@@ -37,3 +39,8 @@ theme_override_constants/outline_size = 2
 theme_override_constants/shadow_outline_size = 2
 theme_override_font_sizes/font_size = 48
 text = "0000"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_02acx")
+volume_db = -16.0
+autoplay = true
