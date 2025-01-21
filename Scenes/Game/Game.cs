@@ -4,10 +4,16 @@ using System;
 public partial class Game : Node2D
 {
 	const double GEM_MARGIN = 50.0;
+
+	private static readonly AudioStream EXPLODE_SOUND =
+					GD.Load<AudioStream>("res://assets/explode.wav");
+
 	[Export] private PackedScene _gemScene;
 	[Export] private Timer _spawnTimer;
 	[Export] private Label _scoreLabel;
 	[Export] private AudioStreamPlayer _music;
+	[Export] private AudioStreamPlayer2D _effects;
+	// [Export] private AudioStream _explodeSound;
 	// [Export] private Gem _gem;
 	// [Export] private NodePath _gemPath;
 	// private Gem _gem;
@@ -48,6 +54,7 @@ public partial class Game : Node2D
 		GD.Print("OnScored Received.");
 		_score += 1;
 		_scoreLabel.Text = $"{_score:0000}";
+		_effects.Play();
 	}
 
 	private void GameOver()
@@ -59,5 +66,9 @@ public partial class Game : Node2D
 		}
 		_spawnTimer.Stop();
 		_music.Stop();
+
+		_effects.Stop();
+		_effects.Stream = EXPLODE_SOUND;
+		_effects.Play();
 	}
 }
